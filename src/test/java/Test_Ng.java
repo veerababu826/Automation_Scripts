@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -16,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -24,15 +27,18 @@ public class Test_Ng {
 	
 	@Test()
 public static void Excel() throws Exception {
+		
+		
 	
         WebDriverManager.chromedriver().setup();
 	
 	    WebDriver driver=new ChromeDriver();
+	 
 	
 	    driver.get("https://www.facebook.com/");
 	
 	    driver.manage().window().maximize();
-	
+	    
 	    File f=new File("C:\\Users\\deviv\\eclipse-workspace\\Selenium\\src\\test\\resources\\TestData.xlsx");
 	
 	    FileInputStream fis=new FileInputStream(f);		
@@ -99,9 +105,7 @@ public static void Excel() throws Exception {
 	  		
 	  		driver.switchTo().newWindow(WindowType.WINDOW);
 			
-			
-       
-            driver.get("https://www.facebook.com/");
+	  		driver.get("https://www.facebook.com/");
           
              wb.close();	
              
@@ -112,7 +116,7 @@ public static void Excel() throws Exception {
     
         }
 	
-	       public  static String getCellValue(Cell cell) {
+	        public  static String getCellValue(Cell cell) {
             if (cell == null)
             return "";
             switch (cell.getCellType()) {
@@ -120,8 +124,11 @@ public static void Excel() throws Exception {
             case NUMERIC: return String.valueOf(cell.getNumericCellValue());
             case BOOLEAN: return String.valueOf(cell.getBooleanCellValue());
             default: return "";
+            
         }
     
+            
+            
     
          }
 
